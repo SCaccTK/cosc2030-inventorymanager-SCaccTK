@@ -2,20 +2,31 @@
 
 // Chapter 19, Programming Challenge 12: Inventory Bin Queue
 #include <iostream>
-#include "InvItem.h"
-#include "InvStack.h"
-#include "InvItem.h"
-#include "InvQue.h"
+#include "InvStack.h" //keep for task 2
+#include "InvItem.h" // keep for task 2
+#include "InvQue.h" // keep for task 2
 using namespace std;
 
 int main()
 {
 	InvQue<InventoryItem> queue;	// create queue
+	InvStack<InventoryItem> stack;
 	InventoryItem item;				// create inventory item object
 
+	int storagechoice;
 	int choice;						// Menu choice
 	long serial;					// Serial number
 	string mDate;					// Manufacture date
+
+	cout << "what would you like to store by?\n";
+	cout << "1. Queue\n2. Stack\n";
+	cin >> storagechoice;
+
+	while (storagechoice < 1 || storagechoice > 2)
+	{
+		cout << "Please enter 1 or 2: ";
+		cin >> storagechoice;
+	}
 
 	do
 	{
