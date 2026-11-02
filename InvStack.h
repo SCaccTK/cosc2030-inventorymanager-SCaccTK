@@ -1,5 +1,6 @@
 // DynStack template
-
+#include <iostream>
+using namespace std;
 template <class T>
 class InvStack
 {
@@ -18,6 +19,7 @@ class InvStack
 		void push(T);
 		void pop(T &);
 		bool isEmpty();
+		void display();
 };
 
 //*********************************************************
@@ -88,4 +90,33 @@ bool InvStack<T>::isEmpty()
 	}
 		
 	return status;
+}
+
+// member function to display all items in stack
+
+template <class T>
+void InvStack<T>::display()
+{
+	if (isEmpty())
+	{
+		cout << "The stack is empty.\n";
+		return;
+	}
+
+	cout << "\nContents of the Stack:\n";
+
+	StackNode* current = top;
+	int count = 1;
+
+	while (current != nullptr)
+	{
+		cout << "Item " << count << ":\n";
+		cout << "\tSerial number: "
+		     << current->value.getSerialNum() << endl;
+		cout << "\tManufacture date: "
+		     << current->value.getManufactDate() << endl;
+
+		current = current->next;
+		count++;
+	}
 }
