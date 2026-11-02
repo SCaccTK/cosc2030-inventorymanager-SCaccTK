@@ -4,11 +4,13 @@
 #include <iostream>
 #include "InvItem.h"
 #include "InvStack.h"
+#include "InvItem.h"
+#include "InvQue.h"
 using namespace std;
 
 int main()
 {
-	InvStack<InventoryItem> stack;	// create stack
+	InvQue<InventoryItem> queue;	// create queue
 	InventoryItem item;				// create inventory item object
 
 	int choice;						// Menu choice
@@ -45,17 +47,17 @@ int main()
 			cout << "Enter the item's manufacture date: ";
 			cin >> mDate;
 			item.setManufactDate(mDate);
-			stack.push(item);
+			queue.enqueue(item);
 			break;
 
 		case 2:
 			// Take a part out of inventory.
 			cout << "\nYou have chosen to remove an item from the inventory bin.\n\n";
-			if (stack.isEmpty())
+			if (queue.isEmpty())
 				cout << "No parts to remove.\n";
 			else
 			{
-				stack.pop(item);
+				queue.dequeue(item);
 				cout << "\nThe part you removed was:\n";
 				cout << "\tSerial number: " << item.getSerialNum() << endl;
 				cout << "\tManufacture date: " << item.getManufactDate() << endl;
