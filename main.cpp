@@ -58,23 +58,60 @@ int main()
 			cout << "Enter the item's manufacture date: ";
 			cin >> mDate;
 			item.setManufactDate(mDate);
-			queue.enqueue(item);
+			if (storagechoice == 1)
+			{
+				queue.enqueue(item);
+			}
+			else 
+			{
+				stack.push(item);
+			}
 			break;
 
 		case 2:
-			// Take a part out of inventory.
-			cout << "\nYou have chosen to remove an item from the inventory bin.\n\n";
-			if (queue.isEmpty())
-				cout << "No parts to remove.\n";
-			else
-			{
-				queue.dequeue(item);
-				cout << "\nThe part you removed was:\n";
-				cout << "\tSerial number: " << item.getSerialNum() << endl;
-				cout << "\tManufacture date: " << item.getManufactDate() << endl;
-				cout << endl;
-			}
-			break;
+    		// Take a part out of inventory.
+            cout << "\nYou have chosen to remove an item from the inventory bin.\n\n";
+
+            // Queue
+            if (storagechoice == 1)
+            {
+                if (queue.isEmpty())
+                {
+                    cout << "No parts to remove.\n";
+                }
+                else
+                {
+                    queue.dequeue(item);
+
+                    cout << "\nThe part you removed was:\n";
+                    cout << "\tSerial number: "
+                         << item.getSerialNum() << endl;
+                    cout << "\tManufacture date: "
+                         << item.getManufactDate() << endl;
+                    cout << endl;
+                }
+            }
+
+            // Stack
+            else
+            {
+                if (stack.isEmpty())
+                {
+                    cout << "No parts to remove.\n";
+                }
+                else
+                {
+                    stack.pop(item);
+
+                    cout << "\nThe part you removed was:\n";
+                    cout << "\tSerial number: "
+                         << item.getSerialNum() << endl;
+                    cout << "\tManufacture date: "
+                         << item.getManufactDate() << endl;
+                    cout << endl;
+                }
+            }
+            break;
 
 		case 3:
 			cout << "\nGoodbye!\n\n";
