@@ -1,6 +1,7 @@
 #ifndef INVQUE_H
 #define INVQUE_H
-
+#include <iostream>
+using namespace std;
 template <class T>
 class InvQue
 {
@@ -56,6 +57,30 @@ public:
     bool isEmpty() const
     {
         return size == 0;
+    }
+
+    void display() const
+    {
+        if (isEmpty())
+        {
+            cout << "The queue is empty.\n";
+            return;
+        }
+
+        cout << "\nContents of the Queue:\n";
+
+        int index = front;
+
+        for (int i = 0; i < size; i++)
+        {
+            cout << "Item " << i + 1 << ":\n";
+            cout << "\tSerial number: "
+                << queue[index].getSerialNum() << endl;
+            cout << "\tManufacture date: "
+                << queue[index].getManufactDate() << endl;
+
+            index = (index + 1) % capacity;
+        }
     }
 };
 
