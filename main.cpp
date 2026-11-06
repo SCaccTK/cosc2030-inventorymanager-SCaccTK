@@ -5,12 +5,15 @@
 #include "InvStack.h" //keep for task 2
 #include "InvItem.h" // keep for task 2
 #include "InvQue.h" // keep for task 2
+#include "BinaryTree.h" 
+
 using namespace std;
 
 int main()
 {
 	InvQue<InventoryItem> queue;	// create queue
 	InvStack<InventoryItem> stack;
+	InvTree<InventoryItem> tree;	// create binary tree
 	InventoryItem item;				// create inventory item object
 
 	int storagechoice;
@@ -20,11 +23,12 @@ int main()
 
 	cout << "what would you like to store by?\n";
 	cout << "1. Queue\n2. Stack\n";
+	cout << "3. Binary Tree\n";
 	cin >> storagechoice;
 
 	while (storagechoice < 1 || storagechoice > 2)
 	{
-		cout << "Please enter 1 or 2: ";
+		cout << "Please enter 1, 2, or 3: ";
 		cin >> storagechoice;
 	}
 
@@ -34,14 +38,15 @@ int main()
 		cout << "\n------ Inventory Menu --------\n\n";
 		cout << "1.  Enter a part into the inventory.\n";
 		cout << "2.  Take a part from the inventory.\n";
-		cout << "3.  Quit.\n\n";
-		cout << "Please make a choice (1, 2, or 3):  ";
+		cout << "3.  Display all inventory\n";
+		cout << "4.  Quit.\n\n";
+		cout << "Please make a choice (1, 2, 3, or 4):  ";
 		cin >> choice;
 
 		// Validate choice
-		while (choice < 1 || choice > 3)
+		while (choice < 1 || choice > 4)
 		{
-			cout << "Please enter 1, 2, or 3: ";
+			cout << "Please enter 1, 2, 3, or 4: ";
 			cin >> choice;
 		}
 
@@ -117,7 +122,7 @@ int main()
 			cout << "\nGoodbye!\n\n";
 			break;
 		}
-	} while (choice  != 3);
+	} while (choice  != 4);
 
 	return 0;
 }
