@@ -80,7 +80,12 @@ void InvTree<T>::insertNode(T item)
 template <class T>
 void InvTree<T>::destroySubTree(TreeNode *nodePtr)
 {
-   //TODO
+   if (nodePtr)
+   {
+      destroySubTree(nodePtr->left);
+      destroySubTree(nodePtr->right);
+      delete nodePtr;
+   }
 }
    
 //***************************************************
@@ -91,8 +96,19 @@ void InvTree<T>::destroySubTree(TreeNode *nodePtr)
 template <class T>
 bool InvTree<T>::searchNode(T item)
 {
-   //TODO
-   return false; // update this with the appropriate return value
+   TreeNode *nodePtr = root;
+
+   while (nodePtr != nullptr)
+   {
+      if (nodePtr->value == item)
+         return true;
+      else if (item < nodePtr->value)
+         nodePtr = nodePtr->left;
+      else
+         nodePtr = nodePtr->right;
+   }
+
+   return false;
 }
 
 //**********************************************
