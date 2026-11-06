@@ -144,8 +144,42 @@ void InvTree<T>::deleteNode(T item, TreeNode *&nodePtr)
 template <class T>
 void InvTree<T>::makeDeletion(TreeNode *&nodePtr)
 {
-   //TODO
+   TreeNode *tempNodePtr;
+
+   if (nodePtr == nullptr)
+      return;
+
+   // Case 1: No left child
+   if (nodePtr->left == nullptr)
+   {
+      tempNodePtr = nodePtr;
+      nodePtr = nodePtr->right;
+      delete tempNodePtr;
+   }
+   // Case 2: No right child
+   else if (nodePtr->right == nullptr)
+   {
+      tempNodePtr = nodePtr;
+      nodePtr = nodePtr->left;
+      delete tempNodePtr;
+   }
+   // Case 3: Two children
+   else
+   {
+      tempNodePtr = nodePtr->right;
+
+      while (tempNodePtr->left != nullptr)
+         tempNodePtr = tempNodePtr->left;
+
+      tempNodePtr->left = nodePtr->left;
+
+      tempNodePtr = nodePtr;
+      nodePtr = nodePtr->right;
+
+      delete tempNodePtr;
+   }
 }
+
 
 //****************************************************************
 // The displayInOrder member function displays the values        *
@@ -154,6 +188,11 @@ void InvTree<T>::makeDeletion(TreeNode *&nodePtr)
 template <class T>
 void InvTree<T>::displayInOrder(TreeNode *nodePtr) const
 {
-   //TODO
+   if (nodePtr != nullptr)
+   {
+      displayInOrder(nodePtr->left);
+      cout << nodePtr->value << endl;
+      displayInOrder(nodePtr->right);
+   }
 }
 #endif
