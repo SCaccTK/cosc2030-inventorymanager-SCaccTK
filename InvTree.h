@@ -50,7 +50,12 @@ public:
 template <class T>
 void InvTree<T>::insert(TreeNode *&nodePtr, TreeNode *&newNode)
 {
-   //TODO
+   if (nodePtr == nullptr)
+      nodePtr = newNode;
+   else if (newNode->value < nodePtr->value)
+      insert(nodePtr->left, newNode);
+   else
+      insert(nodePtr->right, newNode);
 }
 
 //**********************************************************
@@ -60,7 +65,12 @@ void InvTree<T>::insert(TreeNode *&nodePtr, TreeNode *&newNode)
 template <class T>
 void InvTree<T>::insertNode(T item)
 {
-   //TODO
+   TreeNode *newNode = new TreeNode;
+   newNode->value = item;
+   newNode->left = nullptr;
+   newNode->right = nullptr;
+
+   insert(root, newNode);
 }
 
 //***************************************************
