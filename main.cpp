@@ -26,7 +26,7 @@ int main()
 	cout << "3. Binary Tree\n";
 	cin >> storagechoice;
 
-	while (storagechoice < 1 || storagechoice > 2)
+	while (storagechoice < 1 || storagechoice > 3)
 	{
 		cout << "Please enter 1, 2, or 3: ";
 		cin >> storagechoice;
@@ -67,10 +67,16 @@ int main()
 			{
 				queue.enqueue(item);
 			}
-			else 
+			else if (storagechoice == 2)
 			{
 				stack.push(item);
 			}
+			else if (storagechoice == 3)
+			{
+				tree.insertNode(item);
+			}
+			
+			cout << " item has been added to the inventory bin.\n";
 			break;
 
 		case 2:
@@ -98,7 +104,7 @@ int main()
             }
 
             // Stack
-            else
+            else if (storagechoice == 2)
             {
                 if (stack.isEmpty())
                 {
@@ -116,11 +122,50 @@ int main()
                     cout << endl;
                 }
             }
+
+			// Binary Tree
+            else
+            {
+                cout << "Enter the serial number of the part to remove: ";
+                cin >> serial;
+
+                InventoryItem searchItem;
+                searchItem.setSerialNum(serial);
+
+                if (tree.searchNode(searchItem))
+                {
+                    tree.remove(searchItem);
+                    cout << "Part removed successfully.\n";
+                }
+                else
+                {
+                    cout << "Part not found in inventory.\n";
+                }
+            }
             break;
 
-		case 3:
-			cout << "\nGoodbye!\n\n";
-			break;
+		
+        case 3:
+            cout << "\n------ Inventory Items ------\n";
+
+            if (storagechoice == 1)
+            {
+                queue.display();
+            }
+            else if (storagechoice == 2)
+            {
+                stack.display();
+            }
+            else
+            {
+                tree.displayInOrder();
+            }
+            break;
+
+		
+        case 4:
+            cout << "\nGoodbye!\n\n";
+            break;
 		}
 	} while (choice  != 4);
 
